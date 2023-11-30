@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "8590732067",
+    "project_id": "rdvedaproducts",
+    "storage_bucket": "rdvedaproducts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8590732067:android:af69cbc43f5069dba3ba96",
+        "android_client_info": {
+          "package_name": "com.rdveda.www.rdveda"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "8590732067-fk6e2qf9fegup06jqd9k0tt452rdsuag.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rdveda.www.rdveda",
+            "certificate_hash": "236ce3630f8268ec7a4774a1f8a0db2d1903bd8a"
+          }
+        },
+        {
+          "client_id": "8590732067-oevdm5p9ord8cptfcbkgq063j8trr958.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAEDEiCAETWrC4JmkV1Qym6RmYrQVNk4u8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "8590732067-oevdm5p9ord8cptfcbkgq063j8trr958.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
