@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:rdveda/src/feature/home/screens/home_screen.dart';
 import 'src/feature/authentication/screens/login.dart';
 import 'src/splash.dart';
 
@@ -33,32 +34,18 @@ class _MyAppState extends State<MyApp> {
             return const MaterialPage(child: Splash());
           }
         ),
-        // GoRoute(
-        //     name: "home",
-        //     path: "/home",
-        //     pageBuilder: (context, state) {
-        //       return const MaterialPage(child: Home());
-        //     }
-        // ),
-        // GoRoute(
-        //     name: "profile",
-        //     path: "/profile",
-        //     pageBuilder: (context, state) {
-        //       return const MaterialPage(child: Profile());
-        //     }
-        // ),
-        // GoRoute(
-        //     name: "contact",
-        //     path: "/contact",
-        //     pageBuilder: (context, state) {
-        //       return const MaterialPage(child: Contact());
-        //     }
-        // ),
         GoRoute(
             name: "login",
             path: "/login",
             pageBuilder: (context, state) {
               return const MaterialPage(child: Login());
+            }
+        ),
+        GoRoute(
+            name: "home",
+            path: "/home",
+            pageBuilder: (context, state) {
+              return const MaterialPage(child: HomeScreen());
             }
         ),
       ],
@@ -75,9 +62,10 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         useMaterial3: false,
-        primaryColor: Colors.lightGreen,
+        primaryColor: Colors.lightGreen.shade900,
         primaryTextTheme: const TextTheme(
           bodyMedium: TextStyle(fontSize: 18, color: Colors.white)
         ),
@@ -92,8 +80,8 @@ class _MyAppState extends State<MyApp> {
           )
         ),
         scaffoldBackgroundColor: Colors.white,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.lightGreen,
+        appBarTheme:  AppBarTheme(
+          backgroundColor: Colors.lightGreen.shade900,
           elevation: 0.0,
         )
       ),

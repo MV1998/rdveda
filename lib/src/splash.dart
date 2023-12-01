@@ -30,7 +30,7 @@ class _SplashState extends State<Splash> {
 
   void startTimer() {
     Timer.periodic(const Duration(seconds: 3), (timer) {
-      GoRouter.of(context).pushReplacementNamed("login");
+      GoRouter.of(context).pushReplacementNamed("home");
       timer.cancel();
     });
   }
