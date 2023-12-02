@@ -80,8 +80,9 @@ class _MyAppState extends State<MyApp> {
           )
         ),
         scaffoldBackgroundColor: Colors.white,
-        appBarTheme:  AppBarTheme(
-          backgroundColor: Colors.lightGreen.shade900,
+        appBarTheme: const AppBarTheme(
+          // backgroundColor: Colors.lightGreen.shade900,
+          backgroundColor: Colors.white,
           elevation: 0.0,
         )
       ),
