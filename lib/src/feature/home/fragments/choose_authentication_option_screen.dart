@@ -12,17 +12,20 @@ class ChooseAuthenticationOptionScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text("RDVeda"),
-            SizedBox(height: 20,),
+            Text("RDVeda", style: Theme.of(context).textTheme.bodyLarge,),
+            const SizedBox(height: 20,),
             ListTile(
-              leading: Icon(Icons.mail),
-              title: Text("Continue with Email"),
-              trailing: Icon(Icons.arrow_right),
-              tileColor: Colors.green.shade300,
+              leading: const Icon(Icons.mail, color: Colors.white,),
+              title: Text("Continue with Email", style: Theme.of(context).textTheme
+                  .bodySmall?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),),
+              trailing: const Icon(Icons.arrow_right, color: Colors.white),
+              tileColor: Colors.green.shade400,
             ),
             ListTile(
-              title: Text("Login to an existing account"),
-              trailing: Icon(Icons.arrow_right),
+              title: Text("Login to an existing account",
+                  style: Theme.of(context).textTheme
+                      .bodySmall?.copyWith(fontWeight: FontWeight.bold)),
+              trailing: const Icon(Icons.arrow_right),
             )
           ],
         ),
