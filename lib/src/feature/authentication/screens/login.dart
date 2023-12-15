@@ -1,9 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rdveda/src/common_ui_components/products_ui/product_card.dart';
-import 'package:rdveda/src/feature/authentication/domain/repository/authentication.dart';
-import 'package:rdveda/src/feature/authentication/domain/services/authenticator_manager.dart';
-import 'package:rdveda/src/feature/authentication/domain/services/firebase_authentication.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -13,7 +10,6 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-
   late TextEditingController phoneNumberTextEditingController;
 
   @override
@@ -33,57 +29,113 @@ class _LoginState extends State<Login> {
     double width = (MediaQuery.of(context).size.width / 2) - 5;
 
     return Scaffold(
+      appBar: AppBar(
+        title: const Text("Register"),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Expanded(
-              flex: 1,
-              child: Image(
-                height: 300,
-                width: 300,
-                image: AssetImage("assets/images/main_logo_white.png"),
-              ),
+            Text(
+              "Hello! Register now to get started",
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
-            Expanded(
-              flex: 1,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  TextField(
-                    controller: phoneNumberTextEditingController,
-                    keyboardType: TextInputType.phone,
-                    decoration: const InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black45, width: 1,
-                              style: BorderStyle.solid)
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black45, width: 1,
-                              style: BorderStyle.solid)
-                      ),
-                      hintStyle: TextStyle(color: Colors.black45, ),
-                      hintText: "Phone Number",
+            const SizedBox(
+              height: 20,
+            ),
+             Row(
+              children: [
+                Expanded(
+                  child: SizedBox(
+                    height: 60,
+                    child: TextField(
+                      keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          hintText: "First Name",
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey.shade50)),
+                          focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black, width: 2))),
                     ),
-                    cursorColor: Colors.black45,
-                    style: const TextStyle(color: Colors.black45),
                   ),
-                  const SizedBox(height: 20,),
-                  TextButton(
-                    onPressed: () {
-                      Authentication authentication = FirebaseAuthentication("7999646778", context);
-                      AuthenticatorManager ma = AuthenticatorManager(authentication);
-                      ma.authenticate();
-                    },
-                    child: Text("Sign In", style: Theme.of(context).textTheme.bodyMedium,),
-                  )
-                ],
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Expanded(
+                  child: SizedBox(
+                    height: 60,
+                    child: TextField(
+                      keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.next,
+                      decoration: InputDecoration(
+                          contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                          fillColor: Colors.grey.shade200,
+                          filled: true,
+                          hintText: "Last Name",
+                          border: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.grey.shade50)),
+                          focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.black, width: 2))),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: 60,
+              child: TextField(
+                keyboardType: TextInputType.name,
+                textInputAction: TextInputAction.next,
+                decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                    fillColor: Colors.grey.shade200,
+                    filled: true,
+                    hintText: "Email",
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade50)),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black, width: 2))),
               ),
             ),
+            SizedBox(
+              height: 60,
+              child: TextField(
+                keyboardType: TextInputType.name,
+                textInputAction: TextInputAction.next,
+                decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                    fillColor: Colors.grey.shade200,
+                    filled: true,
+                    hintText: "Password",
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade50)),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black, width: 2))),
+              ),
+            ),
+            SizedBox(
+              height: 60,
+              child: TextField(
+                keyboardType: TextInputType.name,
+                textInputAction: TextInputAction.next,
+                decoration: InputDecoration(
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 10),
+                    fillColor: Colors.grey.shade200,
+                    filled: true,
+                    hintText: "Confirm Password",
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.grey.shade50)),
+                    focusedBorder: const OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.black, width: 2))),
+              ),
+            )
           ],
         ),
       ),
@@ -161,19 +213,60 @@ class _LoginState extends State<Login> {
     FirebaseAuth auth = FirebaseAuth.instance;
     await auth.verifyPhoneNumber(
       phoneNumber: "+91 $number",
-      verificationCompleted: (PhoneAuthCredential credential) {
-
-      },
-      verificationFailed: (FirebaseAuthException e) {
-
-      },
+      verificationCompleted: (PhoneAuthCredential credential) {},
+      verificationFailed: (FirebaseAuthException e) {},
       codeSent: (String verificationId, int? resendToken) {
         print("-----> $verificationId");
-
       },
-      codeAutoRetrievalTimeout: (String verificationId) {
-
-      },
+      codeAutoRetrievalTimeout: (String verificationId) {},
     );
   }
 }
+
+/*
+const Expanded(
+              flex: 1,
+              child: Image(
+                height: 300,
+                width: 300,
+                image: AssetImage("assets/images/main_logo_white.png"),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  TextField(
+                    controller: phoneNumberTextEditingController,
+                    keyboardType: TextInputType.phone,
+                    decoration: const InputDecoration(
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black45, width: 1,
+                              style: BorderStyle.solid)
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black45, width: 1,
+                              style: BorderStyle.solid)
+                      ),
+                      hintStyle: TextStyle(color: Colors.black45, ),
+                      hintText: "Phone Number",
+                    ),
+                    cursorColor: Colors.black45,
+                    style: const TextStyle(color: Colors.black45),
+                  ),
+                  const SizedBox(height: 20,),
+                  TextButton(
+                    onPressed: () {
+                      Authentication authentication = FirebaseAuthentication("7999646778", context);
+                      AuthenticatorManager ma = AuthenticatorManager(authentication);
+                      ma.authenticate();
+                    },
+                    child: Text("Sign In", style: Theme.of(context).textTheme.bodyMedium,),
+                  )
+                ],
+              ),
+            ),
+ */

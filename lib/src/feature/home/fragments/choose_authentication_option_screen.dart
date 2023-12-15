@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ChooseAuthenticationOptionScreen extends StatelessWidget {
   const ChooseAuthenticationOptionScreen({super.key});
@@ -15,6 +16,9 @@ class ChooseAuthenticationOptionScreen extends StatelessWidget {
             Text("RDVeda", style: Theme.of(context).textTheme.bodyLarge,),
             const SizedBox(height: 20,),
             ListTile(
+              onTap: () {
+                GoRouter.of(context).pushNamed("login");
+              },
               leading: const Icon(Icons.mail, color: Colors.white,),
               title: Text("Continue with Email", style: Theme.of(context).textTheme
                   .bodySmall?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),),

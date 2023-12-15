@@ -13,17 +13,17 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-          appBar: AppBar(
-    title: const Text("RDVeda"),
-    centerTitle: true,
-    actions: [
-      IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
-      IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart))
-    ],
-          ),
-          drawer: const Drawer(),
-          body: const BuildBodyUI(),
-        );
+      appBar: AppBar(
+        title: const Text("RDVeda"),
+        centerTitle: true,
+        actions: [
+          IconButton(onPressed: () {}, icon: const Icon(Icons.search)),
+          IconButton(onPressed: () {}, icon: const Icon(Icons.shopping_cart))
+        ],
+      ),
+      drawer: const Drawer(),
+      body: const BuildBodyUI(),
+    );
   }
 }
 
