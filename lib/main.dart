@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:rdveda/src/feature/home/screens/home_screen.dart';
 import 'src/feature/authentication/screens/login.dart';
+import 'src/feature/authentication/screens/registration.dart';
 import 'src/splash.dart';
 
 void main() async {
@@ -40,6 +41,13 @@ class _MyAppState extends State<MyApp> {
             path: "/login",
             pageBuilder: (context, state) {
               return const MaterialPage(child: Login());
+            }
+        ),
+        GoRoute(
+            name: "register",
+            path: "/register",
+            pageBuilder: (context, state) {
+              return const MaterialPage(child: Registration());
             }
         ),
         GoRoute(

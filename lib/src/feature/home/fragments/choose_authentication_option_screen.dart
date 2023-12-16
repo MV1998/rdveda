@@ -13,11 +13,15 @@ class ChooseAuthenticationOptionScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text("RDVeda", style: Theme.of(context).textTheme.bodyLarge,),
+            Image.asset(
+              "assets/images/main_logo_white.png",
+              height: 200,
+              width: 200,
+            ),
             const SizedBox(height: 20,),
             ListTile(
               onTap: () {
-                GoRouter.of(context).pushNamed("login");
+                GoRouter.of(context).pushNamed("register");
               },
               leading: const Icon(Icons.mail, color: Colors.white,),
               title: Text("Continue with Email", style: Theme.of(context).textTheme
@@ -26,6 +30,9 @@ class ChooseAuthenticationOptionScreen extends StatelessWidget {
               tileColor: Colors.green.shade400,
             ),
             ListTile(
+              onTap: () {
+                GoRouter.of(context).pushNamed("login");
+              },
               title: Text("Login to an existing account",
                   style: Theme.of(context).textTheme
                       .bodySmall?.copyWith(fontWeight: FontWeight.bold)),
