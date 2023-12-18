@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:rdveda/src/feature/authentication/providers/registration_provider.dart';
 
 class Registration extends StatefulWidget {
   const Registration({Key? key}) : super(key: key);
@@ -9,19 +11,18 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
-  late TextEditingController phoneNumberTextEditingController;
-  late FocusNode focusNode;
+  late RegistrationProvider registrationProvider;
 
   @override
   void initState() {
-    phoneNumberTextEditingController = TextEditingController();
-    focusNode = FocusNode();
+    registrationProvider = Provider.of(context, listen: false);
+    registrationProvider.init();
     super.initState();
   }
 
   @override
   void dispose() {
-    phoneNumberTextEditingController.dispose();
+    registrationProvider.doDispose();
     super.dispose();
   }
 
@@ -59,6 +60,8 @@ class _RegistrationState extends State<Registration> {
                       child: TextField(
                         keyboardType: TextInputType.name,
                         textInputAction: TextInputAction.next,
+                        controller:
+                            registrationProvider.firstNameTextEditingController,
                         decoration: InputDecoration(
                             contentPadding:
                                 const EdgeInsets.symmetric(horizontal: 10),
@@ -83,6 +86,8 @@ class _RegistrationState extends State<Registration> {
                       child: TextField(
                         keyboardType: TextInputType.name,
                         textInputAction: TextInputAction.next,
+                        controller:
+                            registrationProvider.lastNameTextEditingController,
                         decoration: InputDecoration(
                             contentPadding:
                                 const EdgeInsets.symmetric(horizontal: 10),
@@ -103,8 +108,9 @@ class _RegistrationState extends State<Registration> {
               SizedBox(
                 height: 60,
                 child: TextField(
-                  keyboardType: TextInputType.name,
+                  keyboardType: TextInputType.emailAddress,
                   textInputAction: TextInputAction.next,
+                  controller: registrationProvider.emailTextEditingController,
                   decoration: InputDecoration(
                       contentPadding:
                           const EdgeInsets.symmetric(horizontal: 10),
@@ -121,8 +127,10 @@ class _RegistrationState extends State<Registration> {
               SizedBox(
                 height: 60,
                 child: TextField(
-                  keyboardType: TextInputType.name,
+                  keyboardType: TextInputType.visiblePassword,
                   textInputAction: TextInputAction.next,
+                  controller:
+                      registrationProvider.passwordTextEditingController,
                   decoration: InputDecoration(
                       contentPadding:
                           const EdgeInsets.symmetric(horizontal: 10),
@@ -139,8 +147,10 @@ class _RegistrationState extends State<Registration> {
               SizedBox(
                 height: 60,
                 child: TextField(
-                  keyboardType: TextInputType.name,
+                  keyboardType: TextInputType.visiblePassword,
                   textInputAction: TextInputAction.next,
+                  controller:
+                      registrationProvider.confirmPasswordTextEditingController,
                   decoration: InputDecoration(
                       contentPadding:
                           const EdgeInsets.symmetric(horizontal: 10),
@@ -154,48 +164,76 @@ class _RegistrationState extends State<Registration> {
                               BorderSide(color: Colors.black, width: 2))),
                 ),
               ),
-              Row(
-                children: [
-                  Checkbox.adaptive(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    visualDensity: VisualDensity.compact,
-                    value: true,
-                    onChanged: (value) {},
-                  ),
-                  Flexible(
-                    child: Text(
-                      "Agree to receive promotions and news by email",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(fontWeight: FontWeight.bold, fontSize: 13),
+              InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () {
+                  registrationProvider.setPromotions();
+                },
+                child: Row(
+                  children: [
+                    Consumer<RegistrationProvider>(
+                      builder: (_, value, child) {
+                        return Checkbox.adaptive(
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          visualDensity: VisualDensity.compact,
+                          value: value.enabledPromotions,
+                          onChanged: (value) {
+                            registrationProvider.setPromotions();
+                          },
+                        );
+                      },
                     ),
-                  ),
-                ],
+                    Flexible(
+                      child: Text(
+                        "Agree to receive promotions and news by email",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(fontWeight: FontWeight.bold, fontSize: 13),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              Row(
-                children: [
-                  Checkbox(
-                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    visualDensity: VisualDensity.compact,
-                    value: true,
-                    onChanged: (value) {},
-                  ),
-                  Flexible(
-                    child: Text(
-                      "I agree to the Terms of Service",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall
-                          ?.copyWith(fontWeight: FontWeight.bold, fontSize: 13),
+              InkWell(
+                splashColor: Colors.transparent,
+                highlightColor: Colors.transparent,
+                onTap: () {
+                  registrationProvider.setTermsAndServices();
+                },
+                child: Row(
+                  children: [
+                    Consumer<RegistrationProvider>(
+                      builder: (_, value, child) {
+                        return Checkbox.adaptive(
+                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                          visualDensity: VisualDensity.compact,
+                          value: value.agreedTermsAndServices,
+                          onChanged: (value) {
+                            registrationProvider.setTermsAndServices();
+                          },
+                        );
+                      },
                     ),
-                  ),
-                ],
+                    Flexible(
+                      child: Text(
+                        "I agree to the Terms of Service",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodySmall
+                            ?.copyWith(fontWeight: FontWeight.bold, fontSize: 13),
+                      ),
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    registrationProvider.createAccount();
+                  },
                   style: Theme.of(context).elevatedButtonTheme.style,
                   child: const Text("Register"),
                 ),
