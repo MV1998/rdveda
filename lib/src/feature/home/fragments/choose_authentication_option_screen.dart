@@ -27,7 +27,7 @@ class ChooseAuthenticationOptionScreen extends StatelessWidget {
               title: Text("Continue with Email", style: Theme.of(context).textTheme
                   .bodySmall?.copyWith(color: Colors.white, fontWeight: FontWeight.bold),),
               trailing: const Icon(Icons.arrow_right, color: Colors.white),
-              tileColor: Colors.green.shade400,
+              tileColor: Colors.grey.shade800,
             ),
             ListTile(
               onTap: () {

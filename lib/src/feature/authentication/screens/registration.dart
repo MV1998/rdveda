@@ -32,7 +32,7 @@ class _RegistrationState extends State<Registration> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Register"),
+        title: const Text("Register",),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -250,7 +250,8 @@ class _RegistrationState extends State<Registration> {
                   ),
                   TextButton(
                     onPressed: () {},
-                    child: const Text("Login Now"),
+                    style: Theme.of(context).textButtonTheme.style,
+                    child: Text("Login Now"),
                   ),
                 ],
               )

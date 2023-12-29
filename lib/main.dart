@@ -7,6 +7,7 @@ import 'package:rdveda/src/feature/home/screens/home_screen.dart';
 import 'src/feature/authentication/providers/registration_provider.dart';
 import 'src/feature/authentication/screens/login.dart';
 import 'src/feature/authentication/screens/registration.dart';
+import 'src/feature/home/screens/all_products.dart';
 import 'src/splash.dart';
 
 void main() async {
@@ -65,6 +66,14 @@ class _MyAppState extends State<MyApp> {
                 child: HomeScreen(),
               );
             }),
+        GoRoute(
+            name: "all_product",
+            path: "/all_product",
+            pageBuilder: (context, state) {
+              return const MaterialPage(
+                child: AllProducts(),
+              );
+            }),
       ],
     );
 
@@ -82,7 +91,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           useMaterial3: false,
-          primaryColor: Colors.lightGreen.shade900,
+          primaryColor: Colors.grey.shade800,
           primaryTextTheme: const TextTheme(
               bodyMedium: TextStyle(fontSize: 18, color: Colors.white)),
           fontFamily: GoogleFonts.poppins().fontFamily,
@@ -92,13 +101,25 @@ class _MyAppState extends State<MyApp> {
             bodyMedium: TextStyle(fontSize: 18, color: Colors.black),
             bodySmall: TextStyle(fontSize: 16, color: Colors.black),
           ),
+          checkboxTheme: CheckboxThemeData(
+            fillColor: MaterialStateColor.resolveWith((states) => Colors.black),
+          ),
+          textButtonTheme: TextButtonThemeData(
+            style: TextButton.styleFrom(
+              foregroundColor: Colors.black,
+              textStyle: const TextStyle(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+              )
+            )
+          ),
           elevatedButtonTheme: ElevatedButtonThemeData(
               style: ButtonStyle(
                   backgroundColor:
-                      MaterialStateProperty.all(Colors.lightGreen))),
+                      MaterialStateProperty.all(Colors.grey.shade800))),
           scaffoldBackgroundColor: Colors.white,
           appBarTheme: AppBarTheme(
-            backgroundColor: Colors.green.shade700,
+            backgroundColor: Colors.grey.shade800,
             // backgroundColor: Colors.white,
             elevation: 0.0,
           )),

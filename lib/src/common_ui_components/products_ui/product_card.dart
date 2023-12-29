@@ -37,12 +37,9 @@ class ProductCard extends StatelessWidget {
         children: [
           Stack(
             children: [
-              const AspectRatio(
-                aspectRatio: 9 / 9,
-                child: Image(
-                  image: AssetImage(
-                    "assets/images/oil3.jpg",
-                  ),
+              Image(
+                image: AssetImage(
+                  "assets/images/oil3.jpg",
                 ),
               ),
               Container(
@@ -119,19 +116,19 @@ class ProductCard extends StatelessWidget {
           const SizedBox(
             height: 5,
           ),
-          LayoutBuilder(
-            builder: (_, constrains) {
-              return ElevatedButton(
-                onPressed: onAdd,
-                style: ButtonStyle(
-                    // backgroundColor:
-                    //     MaterialStateProperty.all(Colors.lightGreen),
-                    minimumSize: MaterialStateProperty.all(
-                        Size(constrains.maxWidth - 10, 30))),
-                child: const Text("Add"),
-              );
-            },
-          )
+          // LayoutBuilder(
+          //   builder: (_, constrains) {
+          //     return ElevatedButton(
+          //       onPressed: onAdd,
+          //       style: ButtonStyle(
+          //           // backgroundColor:
+          //           //     MaterialStateProperty.all(Colors.lightGreen),
+          //           minimumSize: MaterialStateProperty.all(
+          //               Size(constrains.maxWidth - 10, 30))),
+          //       child: const Text("Add"),
+          //     );
+          //   },
+          // )
         ],
       ),
     );
