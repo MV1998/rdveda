@@ -37,7 +37,7 @@ class ProductCard extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Image(
+              const Image(
                 image: AssetImage(
                   "assets/images/oil3.jpg",
                 ),

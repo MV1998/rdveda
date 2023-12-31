@@ -1,8 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:rdveda/src/app_bloc_observer.dart';
+import 'package:rdveda/src/feature/authentication/login_bloc/login_bloc.dart';
 import 'package:rdveda/src/feature/home/screens/home_screen.dart';
 import 'src/feature/authentication/providers/registration_provider.dart';
 import 'src/feature/authentication/screens/login.dart';
@@ -11,6 +14,7 @@ import 'src/feature/home/screens/all_products.dart';
 import 'src/splash.dart';
 
 void main() async {
+  Bloc.observer = AppBlocObserver();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
@@ -43,8 +47,11 @@ class _MyAppState extends State<MyApp> {
             name: "login",
             path: "/login",
             pageBuilder: (context, state) {
-              return const MaterialPage(
-                child: Login(),
+              return MaterialPage(
+                child: BlocProvider(
+                  create: (_) => LoginBloc(),
+                  child: const Login(),
+                ),
               );
             }),
         GoRoute(
