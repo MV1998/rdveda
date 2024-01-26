@@ -47,9 +47,6 @@ class _LoginState extends State<Login> {
               child: CircularProgressIndicator(),
             );
           }
-          // if (state is SuccessLoginState) {
-          //
-          // }
           return Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
