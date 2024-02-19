@@ -1,7 +1,6 @@
 # rdveda
 
-A new Flutter project.
-
+This is the online beauty selling product app and project is in development state as of now.
 ## Getting Started
 
 This project is a starting point for a Flutter application.
